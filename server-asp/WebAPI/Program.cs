@@ -16,6 +16,7 @@ builder.Services.AddApplication()
 
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
 
 /* Database Context Dependency Injection */
 builder.Services.AddDbContext<EShopDbContext>(opt =>
@@ -30,6 +31,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseHttpsRedirection();
 

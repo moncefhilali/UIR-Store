@@ -1,5 +1,6 @@
 import flech from '../../assets/flech.png'
 import tennu from '../../assets/tennu.png'
+import heart from '../../assets/heart.png'
 import { Link } from 'react-router-dom'
 
 export default function PopularePrdcts() {
@@ -16,9 +17,9 @@ export default function PopularePrdcts() {
                 <h1 className='text-[#FFFFFF]'>60,52 mad </h1>
                 <h1 className='text-[#FFFFFF]'>T-Shirt Polo</h1>
                 <p className='text-[#FFFFFF]'>Uir pride Manches Courts</p>
-                <div className='flex justify-between gap-6 items-center my-2'>
-                    <button className='text-[#FDFDFD] bg-[#C9CE19] py-2 px-2 text-center rounded-md'>Add To Card</button>
-                    <button className='text-[#183761] bg-[#FFFFFF] py-2 px-2 text-center rounded-md'> </button>
+                <div className='flex justify-between gap-2 items-center my-2'>
+                    <button className='text-[#FDFDFD] bg-[#C9CE19] py-2 px-8 text-center rounded-md'>Add To Card</button>
+                    <button className='text-[#183761] bg-[#C9CE19] py-2 px-2 text-center rounded-full'><img src={heart} alt="" /> </button>
                 </div>
             </div>
         </div>
