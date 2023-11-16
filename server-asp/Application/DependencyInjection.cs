@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Services;
+using Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -10,7 +11,7 @@ namespace Application
         {
             var assembly = typeof(DependencyInjection).Assembly;
 
-            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 
             return services;
         }

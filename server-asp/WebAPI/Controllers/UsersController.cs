@@ -1,28 +1,28 @@
 ﻿using Application.Interfaces;
-using Application.Services;
 using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly IGenericService<Product> _productService;
+        private readonly IGenericService<Users> _usersService;
 
-        public ProductController(IGenericService<Product> productService)
+        public UsersController(IGenericService<Users> usersService)
         {
-            _productService = productService;
+            _usersService = usersService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllUsers()
         {
             try
             {
-                var products = await _productService.GetEntitiesAsync();
-                return Ok(products);
+                var users = await _usersService.GetEntitiesAsync();
+                return Ok(users);
             }
             catch (Exception ex)
             {
@@ -31,12 +31,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromBody] Product product)
+        public async Task<IActionResult> CreateUsers([FromBody] Users users)
         {
             try
             {
-                await _productService.CreateEntityAsync(product);
-                return Ok("Product created successfully");
+                await _usersService.CreateEntityAsync(users);
+                return Ok("User created successfully");
             }
             catch (Exception ex)
             {
@@ -45,18 +45,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdProduct(int id)
+        public async Task<IActionResult> GetByIdUsers(int id)
         {
             try
             {
-                var product = await _productService.GetByIdEntityAsync(id);
+                var users = await _usersService.GetByIdEntityAsync(id);
 
-                if (product == null)
+                if (users == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(product);
+                return Ok(users);
             }
             catch (Exception ex)
             {
@@ -65,12 +65,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
+        public async Task<IActionResult> UpdateUsers(int id, [FromBody] Users users)
         {
             try
             {
-                await _productService.UpdateEntityAsync(product);
-                return Ok("Product updated successfully");
+                await _usersService.UpdateEntityAsync(users);
+                return Ok("Users updated successfully");
             }
             catch (Exception ex)
             {
@@ -79,12 +79,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteUsers(int id)
         {
             try
             {
-                await _productService.DeleteEntityAsync(id);
-                return Ok("Product deleted successfully");
+                await _usersService.DeleteEntityAsync(id);
+                return Ok("Users deleted successfully");
             }
             catch (Exception ex)
             {
