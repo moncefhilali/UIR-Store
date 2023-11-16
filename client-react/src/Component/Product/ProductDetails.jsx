@@ -6,8 +6,48 @@ import review from '../../assets/review.png'
 import star from '../../assets/star 16.png'
 import star2 from '../../assets/star 20.png'
 import line from '../../assets/line.png'
+import { useState } from 'react'
+
+
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 export default function ProductDetails() {
+    const [hidden ,sethidden] = useState(false)
+    const [hidden1 ,sethidden1] = useState(false)
+    const [hidden2 ,sethidden2] = useState(false)
+    const [hidden3 ,sethidden3] = useState(false)
+
+
+function hiddeCheck(num){
+if(num == 1 ){
+sethidden(true)
+sethidden1(false)
+sethidden2(false)
+sethidden3(false)
+}
+if(num == 2 ){
+sethidden(false)
+sethidden1(true)
+sethidden2(false)
+sethidden3(false)
+}
+if(num == 3 ){
+sethidden(false)
+sethidden1(false)
+sethidden2(true)
+sethidden3(false)
+}
+if(num == 4 ){
+sethidden(false)
+sethidden1(false)
+sethidden2(false)
+sethidden3(true)
+}
+    }
+
+
   return (
+    <>
     <div className='w-full flex gap-14 my-6 text-[#183761] '>
     <main className='w-[50%]'>
         <div className='flex gap-8'>
@@ -90,21 +130,29 @@ export default function ProductDetails() {
             <div className='flex gap-4 ml-2'>
                 <p>Color: Black | 2162/888 :</p>
                 <div className='flex gap-3'>
-                    <div className='bg-[#000000] w-[20px] h-[20px] rounded-full'></div>
-                    <div className='bg-[#183761] w-[20px] h-[20px] rounded-full'></div>
-                    <div className='bg-[#997143] w-[20px] h-[20px] rounded-full'></div>
-                    <div className='bg-[#C9CE19] w-[20px] h-[20px] rounded-full'></div>
+                    <div className='bg-[#000000] w-[20px] h-[20px] rounded-full flex justify-center items-center cursor-pointer' onClick={(()=>hiddeCheck(1))}>
+                        {hidden && <img src={check} alt="" className='w-[10px]' /> }
+                    </div>
+                    <div className='bg-[#183761] w-[20px] h-[20px] rounded-full flex justify-center items-center cursor-pointer' onClick={(()=>{hiddeCheck(2)})}>
+                    {hidden1 && <img src={check} alt="" className='w-[10px]' /> }
+                    </div>
+                    <div className='bg-[#997143] w-[20px] h-[20px] rounded-full flex justify-center items-center cursor-pointer' onClick={(()=>{hiddeCheck(3)})}>
+                    {hidden2 && <img src={check} alt="" className='w-[10px]' /> }
+                    </div>
+                    <div className='bg-[#C9CE19] w-[20px] h-[20px] rounded-full flex justify-center items-center cursor-pointer' onClick={(()=>{hiddeCheck(4)})}>
+                    {hidden3 && <img src={check} alt="" className='w-[10px]' /> }
+                    </div>
 
                 </div>
             </div>
             <div className='flex gap-4 ml-2'>
                 <p>Size :</p>
                 <div className='flex gap-3'>
-                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd'>XS</div>
-                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd'>S</div>
-                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd'>M</div>
-                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd'>L</div>
-                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd'>XL</div>
+                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd hover:border-[1px] hover:border-yellow-400 cursor-pointer active:border-yellow-400'>XS</div>
+                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd hover:border-[1px] hover:border-yellow-400 cursor-pointer active:border-yellow-400'>S</div>
+                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd hover:border-[1px] hover:border-yellow-400 cursor-pointer active:border-yellow-400'>M</div>
+                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd hover:border-[1px] hover:border-yellow-400 cursor-pointer active:border-yellow-400'>L</div>
+                    <div className='w-[20px] h-[20px] rounded-lg px-4 flex justify-center items-center brd hover:border-[1px] hover:border-yellow-400 cursor-pointer active:border-yellow-400'>XL</div>
 
                 </div>
             </div>
@@ -142,5 +190,10 @@ export default function ProductDetails() {
         </div>
     </main>
     </div>
+    <div className='w-full flex justify-center text-[#c5c6c9] flex-col cursor-pointer items-center'>
+        <p>View more </p>
+        <KeyboardArrowDownIcon></KeyboardArrowDownIcon>
+    </div>
+    </>
   )
 }
