@@ -1,28 +1,28 @@
 ﻿using Application.Interfaces;
-using Application.Services;
 using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        private readonly IGenericService<Product> _productService;
+        private readonly IGenericService<Categories> _categoriesService;
 
-        public ProductController(IGenericService<Product> productService)
+        public CategoriesController(IGenericService<Categories> categoriesService)
         {
-            _productService = productService;
+            _categoriesService = categoriesService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllCategories()
         {
             try
             {
-                var products = await _productService.GetEntitiesAsync();
-                return Ok(products);
+                var categories = await _categoriesService.GetEntitiesAsync();
+                return Ok(categories);
             }
             catch (Exception ex)
             {
@@ -31,12 +31,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromBody] Product product)
+        public async Task<IActionResult> CreateCategories([FromBody] Categories categories)
         {
             try
             {
-                await _productService.CreateEntityAsync(product);
-                return Ok("Product created successfully");
+                await _categoriesService.CreateEntityAsync(categories);
+                return Ok("Category created successfully");
             }
             catch (Exception ex)
             {
@@ -45,18 +45,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdProduct(int id)
+        public async Task<IActionResult> GetByIdCategories(int id)
         {
             try
             {
-                var product = await _productService.GetByIdEntityAsync(id);
+                var categories = await _categoriesService.GetByIdEntityAsync(id);
 
-                if (product == null)
+                if (categories == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(product);
+                return Ok(categories);
             }
             catch (Exception ex)
             {
@@ -65,12 +65,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
+        public async Task<IActionResult> UpdateCategories(int id, [FromBody] Categories categories)
         {
             try
             {
-                await _productService.UpdateEntityAsync(product);
-                return Ok("Product updated successfully");
+                await _categoriesService.UpdateEntityAsync(categories);
+                return Ok("Category updated successfully");
             }
             catch (Exception ex)
             {
@@ -79,12 +79,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteCategories(int id)
         {
             try
             {
-                await _productService.DeleteEntityAsync(id);
-                return Ok("Product deleted successfully");
+                await _categoriesService.DeleteEntityAsync(id);
+                return Ok("Category deleted successfully");
             }
             catch (Exception ex)
             {

@@ -19,7 +19,6 @@ namespace Domain.Entities
         public DateTime OrderDate { get; set; }
 
         [Column("TotalPrice")]
-        public int TotalPrice { get; set; }
-
+        public decimal TotalPrice { get; set; }
     }
 }

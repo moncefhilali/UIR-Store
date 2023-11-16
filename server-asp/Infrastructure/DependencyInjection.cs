@@ -11,7 +11,7 @@ namespace Infrastructure
         {
             var assembly = typeof(DependencyInjection).Assembly;
 
-            services.AddScoped<IGenericRepository<Product>, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             return services;
         }

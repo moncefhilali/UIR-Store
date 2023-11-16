@@ -14,10 +14,10 @@ namespace Domain.Entities
         public string? LastName { get; set; }
 
         [Column("Email")]
-        public String? Email { get; set; }
+        public string? Email { get; set; }
 
         [Column("PhoneNumber")]
-        public int PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Column("Description")]
         public string? Description { get; set; }
