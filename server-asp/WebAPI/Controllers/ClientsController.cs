@@ -7,22 +7,22 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class ClientsController : ControllerBase
     {
-        private readonly IGenericService<Users> _usersService;
+        private readonly IGenericService<Clients> _clientsService;
 
-        public UsersController(IGenericService<Users> usersService)
+        public ClientsController(IGenericService<Clients> clientsService)
         {
-            _usersService = usersService;
+            _clientsService = clientsService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllClients()
         {
             try
             {
-                var users = await _usersService.GetEntitiesAsync();
-                return Ok(users);
+                var clients = await _clientsService.GetEntitiesAsync();
+                return Ok(clients);
             }
             catch (Exception ex)
             {
@@ -31,12 +31,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUsers([FromBody] Users users)
+        public async Task<IActionResult> CreateClients([FromBody] Clients clients)
         {
             try
             {
-                await _usersService.CreateEntityAsync(users);
-                return Ok("User created successfully");
+                await _clientsService.CreateEntityAsync(clients);
+                return Ok("Client created successfully");
             }
             catch (Exception ex)
             {
@@ -45,18 +45,18 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdUsers(int id)
+        public async Task<IActionResult> GetByIdClients(int id)
         {
             try
             {
-                var users = await _usersService.GetByIdEntityAsync(id);
+                var clients = await _clientsService.GetByIdEntityAsync(id);
 
-                if (users == null)
+                if (clients == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(users);
+                return Ok(clients);
             }
             catch (Exception ex)
             {
@@ -65,12 +65,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUsers(int id, [FromBody] Users users)
+        public async Task<IActionResult> UpdateClients(int id, [FromBody] Clients clients)
         {
             try
             {
-                await _usersService.UpdateEntityAsync(users);
-                return Ok("User updated successfully");
+                await _clientsService.UpdateEntityAsync(clients);
+                return Ok("Client updated successfully");
             }
             catch (Exception ex)
             {
@@ -79,12 +79,12 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsers(int id)
+        public async Task<IActionResult> DeleteClients(int id)
         {
             try
             {
-                await _usersService.DeleteEntityAsync(id);
-                return Ok("User deleted successfully");
+                await _clientsService.DeleteEntityAsync(id);
+                return Ok("Client deleted successfully");
             }
             catch (Exception ex)
             {
