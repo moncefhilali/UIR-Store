@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("_ProductImages", Schema = "dbo")]
+    [Table("ProductImages", Schema = "dbo")]
     public class ProductImages : BaseEntity
     {
         [Column("ImagePath")]

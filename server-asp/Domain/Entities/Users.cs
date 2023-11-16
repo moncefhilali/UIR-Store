@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("_Users", Schema = "dbo")]
+    [Table("Users", Schema = "dbo")]
 
     public class Users : BaseEntity
     {

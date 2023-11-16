@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Domain.Entities
 {
 
-    [Table("_ProductOwners", Schema = "dbo")]
+    [Table("ProductOwners", Schema = "dbo")]
 
     public class ProductOwners : BaseEntity    {
         [Column("UserId")]
