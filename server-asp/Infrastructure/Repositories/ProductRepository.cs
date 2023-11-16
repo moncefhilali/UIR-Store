@@ -23,5 +23,21 @@ namespace Infrastructure.Repositories
             _dbContext.Products.Add(product);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _dbContext.Products.FindAsync(id);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await _dbContext.Products.FindAsync(id);
+            _dbContext.Products.Remove(entity);
+        }
+
+        public async Task UpdateAsync(Product product)
+        {
+            _dbContext.Entry(product).State = EntityState.Modified;
+        }
     }
 }

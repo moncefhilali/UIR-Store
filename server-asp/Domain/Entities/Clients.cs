@@ -3,8 +3,8 @@
 namespace Domain.Entities
 {
 
-    [Table("_Clients", Schema = "dbo")]
-    public class Clients
+    [Table("Clients", Schema = "dbo")]
+    public class Clients : BaseEntity
     {
 
         [Column("UserId")]
