@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -7,13 +6,13 @@ namespace Domain.Entities
     public class Product : BaseEntity
     {
         [Column("ProductTitle")]
-        public string ProductTitle { get; set; }
+        public string? ProductTitle { get; set; }
 
         [Column("SubProductTitle")]
-        public string SubProductTitle { get; set; }
+        public string? SubProductTitle { get; set; }
 
         [Column("ProductDescription")]
-        public string ProductDescription { get; set; }
+        public string? ProductDescription { get; set; }
 
         [Column("Price")]
         public decimal Price { get; set; }

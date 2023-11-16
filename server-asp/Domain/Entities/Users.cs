@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -30,11 +25,7 @@ namespace Domain.Entities
         [Column("ProfileImage")]
         public string? ProfileImage { get; set; }
 
-
         [Column("address")]
         public string? address { get; set; }
-
-
-
     }
 }
