@@ -4,7 +4,7 @@ namespace Domain.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<IEnumerable<T>> GetUsersAsync();
-        Task CreateUserAsync(T t);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task CreateAsync(T t);
     }
 }
