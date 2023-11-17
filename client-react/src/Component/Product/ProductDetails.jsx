@@ -1,4 +1,3 @@
-import React from 'react'
 import tennu from '../../assets/tennu.png'
 import check from '../../assets/check.png'
 import owner from '../../assets/owner.png'
@@ -7,6 +6,9 @@ import star from '../../assets/star 16.png'
 import star2 from '../../assets/star 20.png'
 import line from '../../assets/line.png'
 import { useState } from 'react'
+import axios from "axios";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom"; // Import useParams
 
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -16,6 +18,56 @@ export default function ProductDetails() {
     const [hidden1 ,sethidden1] = useState(false)
     const [hidden2 ,sethidden2] = useState(false)
     const [hidden3 ,sethidden3] = useState(false)
+    const [data, setdata] = useState([]);
+    const [userid, setuserid] = useState()
+    const [userdata,setuserdata] = useState({})
+
+
+    // ... other imports ...
+
+      // Use useParams to get the id from the URL
+      const { id } = useParams();
+    
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const productResponse = await axios.get(`https://localhost:7089/api/Product/${id}`);
+            const productData = productResponse.data;
+            setdata(productData);
+      
+            const productOwnerResponse = await axios.get(`https://localhost:7089/api/ProductOwners/${productData.productOwner}`);
+            const userId = productOwnerResponse.data.userId;
+            setuserid(userId);
+      
+            const userResponse = await axios.get(`https://localhost:7089/api/Users/${userId}`);
+            const userData = userResponse.data;
+            setuserdata(userData);
+      
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchData(); // Call the async function
+      }, [id]);
+      
+
+      useEffect(() => {
+        console.log(data);
+      }, [data]);
+      useEffect(() => {
+        console.log(userdata);
+      }, [userdata]);
+
+
+      
+
+
+
+
+
+
+
 
 
 function hiddeCheck(num){
@@ -124,9 +176,9 @@ sethidden3(true)
     </main>
     <main className='w-[50%]  my-8'>
         <div className='flex flex-col gap-6 pt-12 px-5 '>
-        <h1 className='text-[30px]'>43.99 MAD</h1>
-        <h2 className='text-[62px]'>T-Shirt Polo</h2>
-        <h3 className='text-[28px] ml-2'>Uir pride Monche courte</h3>
+        <h1 className='text-[30px]'>{data.price} MAD</h1>
+        <h2 className='text-[62px]'>{data.productTitle}</h2>
+        <h3 className='text-[28px] ml-2'>{data.subProductTitle}</h3>
             <div className='flex gap-4 ml-2'>
                 <p>Color: Black | 2162/888 :</p>
                 <div className='flex gap-3'>
@@ -164,26 +216,18 @@ sethidden3(true)
                 <h1 className='my-3'>Product Descreption :</h1>
                 <p>
                 ⚡RUSH YOUR ORDER⚡ <br />
-                    If you would like to speed up the process, 
-                    you have 2 options at checkout. “Arrival within
-                    5 days” puts your order at the front of the line
-                    ensuring it gets out our doors as quickly as
-                    possible. However it does not pay for faster
-                    shipping. “Guaranteed within 3 days” moves
-                    you to the front of the line AND will upgrade
-                    your order to 1-2 day shippings.
+                    {data.productDescription}
                 </p>
             </div>
             <div className='mt-6'>
                 <h1 className='my-3'>Product Owner :</h1>
                 <div className='flex items-center gap-3'>
                     <img src={owner} alt="" />
-                    <p>Essa amari</p>
+                    <p>{`${userdata.firstName} ${userdata.lastName}`}</p>
                 </div>
                 <p>
                 ⚡ Message from owner ⚡ <br />
-                Thank you so much for supporting my small 
-                Bussines i hope you  like my products quality
+                {userdata.description}
                 </p>
             </div>
 
